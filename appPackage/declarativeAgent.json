@@ -2,16 +2,34 @@
     "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.4/schema.json",
     "version": "v1.4",
     "name": "M365AgentV1",
-"description": "Declarative agent created with Microsoft 365 Agents Toolkit",
-"instructions": "$[file('instruction.txt')]",
-"conversation_starters": [
-    {
-        "title": "Getting Started",
-        "text": "How can I get started with Agents Toolkit?"
-    },
-    {
-        "title": "Getting Help",
-        "text": "How can I get help with Agents Toolkit?"
-    }
-]
+    "description": "Declarative agent created with Microsoft 365 Agents Toolkit",
+    "instructions": "$[file('instruction.txt')]",
+    "conversation_starters": [
+        {
+            "title": "Getting Started",
+            "text": "How can I get started with Agents Toolkit?"
+        },
+        {
+            "title": "Getting Help",
+            "text": "How can I get help with Agents Toolkit?"
+        },
+        {
+            "text": "Get posts"
+        },
+        {
+            "text": "Create post"
+        },
+        {
+            "text": "Get post by ID"
+        },
+        {
+            "text": "Update post"
+        }
+    ],
+    "actions": [
+        {
+            "id": "action_1",
+            "file": "ai-plugin.json"
+        }
+    ]
 }

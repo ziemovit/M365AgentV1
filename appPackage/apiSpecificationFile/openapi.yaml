@@ -1,0 +1,295 @@
+openapi: 3.0.4
+info:
+  title: Posts API - Subset
+  version: '1.0'
+servers:
+  - url: https://jsonplaceholder.typicode.com/
+paths:
+  /posts:
+    get:
+      description: Get posts
+      operationId: GetPosts
+      parameters:
+        - name: userId
+          in: query
+          description: Filter results by user ID
+          explode: false
+          schema:
+            maxItems: 1
+            type: integer
+        - name: title
+          in: query
+          description: Filter results by title
+          explode: false
+          schema:
+            maxItems: 1
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userId:
+                      type: integer
+                      description: The ID of the user that authored the post.
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    body:
+                      type: string
+    post:
+      description: Create post
+      operationId: CreatePost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: The ID of the user that authored the post.
+                id:
+                  type: integer
+                title:
+                  type: string
+                body:
+                  type: string
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    description: The ID of the user that authored the post.
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+  '/posts/{post-id}':
+    get:
+      description: Get post by ID
+      operationId: GetPostById
+      parameters:
+        - name: post-id
+          in: path
+          description: 'key: id of post'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    description: The ID of the user that authored the post.
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+    patch:
+      description: Update post
+      operationId: UpdatePost
+      parameters:
+        - name: post-id
+          in: path
+          description: 'key: id of post'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: The ID of the user that authored the post.
+                id:
+                  type: integer
+                title:
+                  type: string
+                body:
+                  type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    description: The ID of the user that authored the post.
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+    delete:
+      description: Delete post
+      operationId: DeletePost
+      parameters:
+        - name: post-id
+          in: path
+          description: 'key: id of post'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+  /users:
+    get:
+      summary: Get users
+      description: Returns details about users
+      operationId: GetUsers
+      parameters:
+        - name: name
+          in: query
+          description: The user's real name
+          explode: false
+          schema:
+            type: string
+        - name: username
+          in: query
+          description: The user's login name
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    phone:
+                      type: string
+                    website:
+                      type: string
+                    address:
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                        suite:
+                          type: string
+                        city:
+                          type: string
+                        zipcode:
+                          type: string
+                        geo:
+                          type: object
+                          properties:
+                            lat:
+                              type: string
+                              description: The latitude of the location
+                            lng:
+                              type: string
+                              description: The longitude of the location
+                    company:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        catchPhrase:
+                          type: string
+                        bs:
+                          type: string
+  '/users/{user-id}':
+    get:
+      description: Get user by ID
+      operationId: GetUserById
+      parameters:
+        - name: user-id
+          in: path
+          description: 'key: id of user'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  phone:
+                    type: string
+                  website:
+                    type: string
+                  address:
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                      suite:
+                        type: string
+                      city:
+                        type: string
+                      zipcode:
+                        type: string
+                      geo:
+                        type: object
+                        properties:
+                          lat:
+                            type: string
+                            description: The latitude of the location
+                          lng:
+                            type: string
+                            description: The longitude of the location
+                  company:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      catchPhrase:
+                        type: string
+                      bs:
+                        type: string
+components: { }

@@ -1,0 +1,124 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.1/schema.json",
+    "schema_version": "v2.1",
+    "name_for_human": "Posts API",
+    "description_for_human": "Description for Posts API",
+    "description_for_model": "Description for Posts API",
+    "contact_email": "publisher-email@example.com",
+    "namespace": "m365agentv1",
+    "capabilities": {
+        "conversation_starters": [
+            {
+                "text": "Get posts"
+            },
+            {
+                "text": "Create post"
+            },
+            {
+                "text": "Get post by ID"
+            },
+            {
+                "text": "Update post"
+            },
+            {
+                "text": "Delete post"
+            },
+            {
+                "text": "Get users"
+            },
+            {
+                "text": "Get user by ID"
+            }
+        ]
+    },
+    "functions": [
+        {
+            "name": "CreatePost",
+            "description": "Create post"
+        },
+        {
+            "name": "DeletePost",
+            "description": "Delete post"
+        },
+        {
+            "name": "GetPostById",
+            "description": "Get post by ID",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/GetPostById.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPosts",
+            "description": "Get posts",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/GetPosts.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetUserById",
+            "description": "Get user by ID",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/GetUserById.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetUsers",
+            "description": "Returns details about users",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/GetUsers.json"
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePost",
+            "description": "Update post",
+            "capabilities": {
+                "response_semantics": {
+                    "data_path": "$",
+                    "static_template": {
+                        "file": "./adaptiveCards/UpdatePost.json"
+                    }
+                }
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "OpenApi",
+            "auth": {
+                "type": "None"
+            },
+            "spec": {
+                "url": "apiSpecificationFile/openapi.yaml"
+            },
+            "run_for_functions": [
+                "GetPosts",
+                "CreatePost",
+                "GetPostById",
+                "UpdatePost",
+                "DeletePost",
+                "GetUsers",
+                "GetUserById"
+            ]
+        }
+    ]
+}
